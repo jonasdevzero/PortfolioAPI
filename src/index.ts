@@ -1,3 +1,5 @@
+import "dotenv"
+import "./database/connection"
 import fastify from "fastify"
 import routes from "./routes"
 
