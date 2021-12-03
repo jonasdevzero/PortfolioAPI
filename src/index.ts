@@ -18,5 +18,3 @@ server.listen(port, host, async (err, address) => {
 
     server.log.info(`server listening on ${address}`)
 })
-
-// Adding a random comment
