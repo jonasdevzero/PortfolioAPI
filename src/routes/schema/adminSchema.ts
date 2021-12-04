@@ -4,15 +4,21 @@ export default {
     index: {
         response: {
             200: {
-                type: "array",
-                items: {
-                    type: "object",
-                    properties: {
-                        id: { type: "string" },
-                        username: { type: "string" },
-                        role: { type: "number" },
+                type: "object",
+                properties: {
+                    admins: {
+                        type: "array",
+                        items: {
+                            type: "object",
+                            properties: {
+                                id: { type: "string" },
+                                username: { type: "string" },
+                                role: { type: "number" },
+                                activated: { type: "boolean", }
+                            },
+                        },
                     },
-                }
+                },
             },
             '4xx': defaultError,
             500: defaultError,
@@ -21,13 +27,39 @@ export default {
 
     create: {
         response: {
+            201: {
+                type: "object",
+                properties: {
+                    token: { type: "string" },
+                },
+            },
+            '4xx': defaultError,
+            500: defaultError,
+        }
+    },
+
+    login: {
+        response: {
+            200: {
+                type: "object",
+                properties: {
+                    token: { type: "string" },
+                },
+            },
+            '4xx': defaultError,
+            500: defaultError,
+        }
+    },
+    
+    update: {
+        response: {
             200: defaultMessage,
             '4xx': defaultError,
             500: defaultError,
         }
     },
 
-    update: {
+    updateActivity: {
         response: {
             200: defaultMessage,
             '4xx': defaultError,

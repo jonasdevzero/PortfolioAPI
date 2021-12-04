@@ -33,6 +33,11 @@ export class createAdmin1638619856367 implements MigrationInterface {
                     type: "integer",
                 },
                 {
+                    name: "activated",
+                    type: "boolean",
+                    default: true,
+                },
+                {
                     name: "reset_token",
                     type: "varchar",
                     isNullable: true,
