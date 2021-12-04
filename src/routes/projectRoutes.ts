@@ -1,22 +1,30 @@
 import { FastifyPluginOptions, FastifyInstance } from "fastify"
 import ProjectController from "../controllers/ProjectController"
 import authHook from "../hooks/authHook"
+import projectSchema from "./schema/projectSchema"
 
 export default function projectRoutes(fastify: FastifyInstance, _opts: FastifyPluginOptions, done: (err?: Error) => void) {
-    fastify.get("/", ProjectController.index)
+    fastify.get("/", {
+        schema: projectSchema.index
+    }, ProjectController.index)
 
-    fastify.get("/:id", ProjectController.show)
+    fastify.get("/:id", {
+        schema: projectSchema.show,
+    }, ProjectController.show)
 
     fastify.post("/", {
-        preValidation: authHook
+        schema: projectSchema.create,
+        preValidation: authHook,
     }, ProjectController.create)
 
     fastify.put("/:id", {
-        preValidation: authHook
+        schema: projectSchema.update,
+        preValidation: authHook,
     }, ProjectController.update)
 
     fastify.delete("/:id", {
-        preValidation: authHook
+        schema: projectSchema.delete,
+        preValidation: authHook,
     }, ProjectController.delete)
 
     done()
