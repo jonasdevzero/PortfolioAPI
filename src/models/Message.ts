@@ -13,4 +13,7 @@ export default class Message extends BaseEntity {
 
     @Column()
     sent_at: Date
+
+    @Column()
+    viewed: boolean
 }

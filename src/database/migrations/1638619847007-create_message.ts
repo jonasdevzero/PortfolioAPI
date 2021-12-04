@@ -29,6 +29,11 @@ export class createMessage1638619847007 implements MigrationInterface {
                     type: "timestamp",
                     default: "now()",                    
                 },
+                {
+                    name: "viewed",
+                    type: "boolean",
+                    default: false,
+                },
             ]
         }))
     }
