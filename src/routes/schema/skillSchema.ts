@@ -29,7 +29,7 @@ export default {
 
     create: {
         response: {
-            200: defaultMessage,
+            201: defaultMessage,
             '4xx': defaultError,
             500: defaultError,
         }
