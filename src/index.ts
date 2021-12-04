@@ -1,13 +1,19 @@
 import "dotenv"
+import "reflect-metadata"
 import "./database/connection"
 import fastify from "fastify"
+import fastifyCors from "fastify-cors"
+import fastifyJWT from "fastify-jwt"
 import routes from "./routes"
 
 const port = process.env.PORT || 5000
 const host = "0.0.0.0"
+const secret = process.env.ADMIN_SECRET || "devzero"
 
 const server = fastify({ logger: true })
 
+server.register(fastifyCors, { origin: "*", methods: ["GET, POST", "PUT", "DELETE"] })
+server.register(fastifyJWT, { secret })
 server.register(routes)
 
 server.listen(port, host, async (err, address) => {
