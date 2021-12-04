@@ -13,10 +13,19 @@ export default function adminRoutes(fastify: FastifyInstance, _opts: FastifyPlug
         schema: adminSchema.create,
     }, AdminController.create)
 
-    fastify.patch("/:id", {
+    fastify.post("/login", {
+        schema: adminSchema.login,
+    }, AdminController.login)
+
+    fastify.put("/", {
         schema: adminSchema.update,
         preValidation: authHook,
     }, AdminController.update)
+
+    fastify.patch("/activated/:id", {
+        schema: adminSchema.updateActivity,
+        preValidation: authHook,
+    }, AdminController.updateActivity)
 
     done()
 }

@@ -1,4 +1,5 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, BeforeInsert } from "typeorm"
+import cryptUtil from "../utils/cryptUtil"
 
 @Entity("admin")
 export default class Admin extends BaseEntity {
@@ -18,11 +19,19 @@ export default class Admin extends BaseEntity {
     role: number
 
     @Column()
-    reset_password: string
+    activated: boolean
 
     @Column()
-    expire_password: Date
+    reset_token: string
+
+    @Column()
+    expire_token: Date
 
     @Column()
     created_at: Date
+
+    @BeforeInsert()
+    private beforeInsert() {
+        this.password = cryptUtil.encryptPassword(this.password)
+    }
 }
