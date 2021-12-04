@@ -4,15 +4,20 @@ export default {
     index: {
         response: {
             200: {
-                type: "array",
-                items: {
-                    type: "object",
-                    properties: {
-                        id: { type: "string" },
-                        username: { type: "string" },
-                        role: { type: "number" },
+                type: "object",
+                properties: {
+                    admins: {
+                        type: "array",
+                        items: {
+                            type: "object",
+                            properties: {
+                                id: { type: "string" },
+                                username: { type: "string" },
+                                role: { type: "number" },
+                            },
+                        },
                     },
-                }
+                },
             },
             '4xx': defaultError,
             500: defaultError,
