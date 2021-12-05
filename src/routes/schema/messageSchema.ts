@@ -31,13 +31,26 @@ export default {
             200: {
                 type: "object",
                 properties: {
-                    id: { type: "string" },
-                    email: { type: "string" },
-                    text: { type: "string" },
-                    sent_at: { type: "string" },
-                    viewed: { type: "boolean" },
+                    message: {
+                        type: "object",
+                        properties: {
+                            id: { type: "string" },
+                            email: { type: "string" },
+                            text: { type: "string" },
+                            sent_at: { type: "string" },
+                            viewed: { type: "boolean" },
+                        },
+                    }
                 }
             },
+            '4xx': defaultError,
+            500: defaultError,
+        }
+    },
+
+    create: {
+        response: {
+            201: defaultMessage,
             '4xx': defaultError,
             500: defaultError,
         }
