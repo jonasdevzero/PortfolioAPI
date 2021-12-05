@@ -54,7 +54,7 @@ export default {
             if (validationError)
                 return reply.status(400).send({ message: validationError })
 
-            await skillRepository.update(skill, { name, type, description, icon_url, more_link })
+            await skillRepository.update(skill.id, { name, type, description, icon_url, more_link })
 
             reply.status(200).send({ message: "Ok" })
         } catch (error) {
