@@ -38,6 +38,11 @@ export class createProject1638554925302 implements MigrationInterface {
                     type: 'text',
                     isNullable: true,
                 },
+                {
+                    name: "created_at",
+                    type: "timestamp",
+                    default: "now()",
+                },
             ]
         }))
     }

@@ -21,6 +21,9 @@ export default class Project extends BaseEntity {
     @Column()
     website_link: string
 
+    @Column()
+    created_at: Date
+
     @OneToMany(_ => ProjectImage, projectImage => projectImage.project)
     @JoinColumn({ name: "project_id" })
     images: ProjectImage[]
