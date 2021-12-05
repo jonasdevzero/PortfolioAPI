@@ -9,7 +9,7 @@ export default class Skill extends BaseEntity {
     name: string 
 
     @Column()
-    type: number 
+    type: string 
 
     @Column()
     description: string 

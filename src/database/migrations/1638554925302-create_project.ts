@@ -3,7 +3,7 @@ import { MigrationInterface, QueryRunner, Table } from "typeorm";
 export class createProject1638554925302 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
+        await queryRunner.query(`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`);
         await queryRunner.createTable(new Table({
             name: "project",
             columns: [
@@ -18,25 +18,30 @@ export class createProject1638554925302 implements MigrationInterface {
                     default: `uuid_generate_v4()`,
                 },
                 {
-                    name: 'name',
-                    type: 'varchar',
+                    name: "name",
+                    type: "varchar",
                 },
                 {
-                    name: 'description',
-                    type: 'varchar',
+                    name: "description",
+                    type: "varchar",
                 },
                 {
-                    name: 'html',
-                    type: 'text',
+                    name: "html",
+                    type: "text",
                 },
                 {
-                    name: 'repository_link',
-                    type: 'text',
+                    name: "repository_link",
+                    type: "text",
                 },
                 {
-                    name: 'website_link',
-                    type: 'text',
+                    name: "website_link",
+                    type: "text",
                     isNullable: true,
+                },
+                {
+                    name: "video_demo",
+                    type: "text",
+                    isNullable: true
                 },
                 {
                     name: "created_at",

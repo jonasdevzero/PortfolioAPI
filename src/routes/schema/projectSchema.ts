@@ -17,6 +17,7 @@ export default {
                                 html: { type: "string" },
                                 repository_link: { type: "string" },
                                 website_link: { type: "string" },
+                                video_demo: { type: "string" },
                                 images: {
                                     type: "array",
                                     items: {
@@ -48,6 +49,7 @@ export default {
                             html: { type: "string" },
                             repository_link: { type: "string" },
                             website_link: { type: "string" },
+                            video_demo: { type: "string" },
                             images: {
                                 type: "array",
                                 items: {

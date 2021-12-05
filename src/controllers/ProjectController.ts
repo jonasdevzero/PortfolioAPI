@@ -44,7 +44,7 @@ export default {
 
     async create(req: ServerRequest, reply: ServerReply) {
         try {
-            const { name, description, html, repository_link, website_link, images } = req.body
+            const { name, description, html, repository_link, website_link, video_demo, images } = req.body
 
             const schema = yup.object().shape({
                 name: yup.string().required(),
@@ -52,6 +52,7 @@ export default {
                 html: yup.string().required(),
                 repository_link: yup.string().required(),
                 website_link: yup.string(),
+                video_demo: yup.string(),
                 images: yup.array().of(yup.object().shape({
                     url: yup.string()
                 })),
@@ -66,8 +67,9 @@ export default {
             const projectRepository = getRepository(Project)
             const projectImageRepository = getRepository(ProjectImage)
 
-            const project = await projectRepository.create({ name, description, html, repository_link, website_link }).save()
-            await Promise.all(images.map(({ url }: { url: string }) => projectImageRepository.create({ url, project_id: project.id, project }).save()))
+            const project = await projectRepository.create({ name, description, html, repository_link, website_link, video_demo }).save()
+            await Promise.all(images.map(({ url }: { url: string }) => 
+                projectImageRepository.create({ url, project_id: project.id, project }).save()))
 
             reply.status(201).send({ message: "Ok" })
         } catch (error) {
@@ -78,7 +80,7 @@ export default {
     async update(req: ServerRequest, reply: ServerReply) {
         try {
             const id = req.params.id as string
-            const { name, description, html, repository_link, website_link, remove_images, new_images } = req.body
+            const { name, description, html, repository_link, website_link, video_demo, remove_images, new_images } = req.body
             
             const projectRepository = getRepository(Project)
 
@@ -93,6 +95,7 @@ export default {
                 html: yup.string().required(),
                 repository_link: yup.string().required(),
                 website_link: yup.string(),
+                video_demo: yup.string(),
             })
 
             let validationError: any
@@ -103,7 +106,7 @@ export default {
 
             const projectImageRepository = getRepository(ProjectImage)
             await Promise.all([
-                projectRepository.update(project, { name, description, html, repository_link, website_link }),
+                projectRepository.update(project, { name, description, html, repository_link, website_link, video_demo }),
                 ...remove_images?.map(({ id }: { id: string }) => projectImageRepository.delete(id)),
                 ...new_images?.map(({ url }: { url: string }) => projectImageRepository.create({ url, project_id: project.id, project }).save())
             ])

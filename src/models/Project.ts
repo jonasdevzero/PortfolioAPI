@@ -22,6 +22,9 @@ export default class Project extends BaseEntity {
     website_link: string
 
     @Column()
+    video_demo: string
+
+    @Column()
     created_at: Date
 
     @OneToMany(_ => ProjectImage, projectImage => projectImage.project)
