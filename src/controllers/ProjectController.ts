@@ -106,7 +106,7 @@ export default {
 
             const projectImageRepository = getRepository(ProjectImage)
             await Promise.all([
-                projectRepository.update(project, { name, description, html, repository_link, website_link, video_demo }),
+                projectRepository.update(project.id, { name, description, html, repository_link, website_link, video_demo }),
                 ...remove_images?.map(({ id }: { id: string }) => projectImageRepository.delete(id)),
                 ...new_images?.map(({ url }: { url: string }) => projectImageRepository.create({ url, project_id: project.id, project }).save())
             ])
