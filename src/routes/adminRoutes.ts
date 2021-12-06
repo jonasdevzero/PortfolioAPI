@@ -17,6 +17,10 @@ export default function adminRoutes(fastify: FastifyInstance, _opts: FastifyPlug
         schema: adminSchema.login,
     }, AdminController.login)
 
+    fastify.post("/auth", {
+        schema: adminSchema.auth,
+    }, AdminController.auth)
+
     fastify.put("/", {
         schema: adminSchema.update,
         preValidation: authHook,
