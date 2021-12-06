@@ -95,6 +95,19 @@ export default {
         }
     },
 
+    async auth(req: ServerRequest, reply: ServerReply) {
+        try {
+            const id = req.user as string
+
+            const adminRepository = getRepository(Admin)
+            const admin = await adminRepository.findOne(id)
+
+            reply.status(200).send({ admin })
+        } catch (error) {
+            reply.status(500).send({ message: "Internal Server Error", error })
+        }
+    },
+
     async update(req: ServerRequest, reply: ServerReply) {
         try {
             const id = req.user.toString()

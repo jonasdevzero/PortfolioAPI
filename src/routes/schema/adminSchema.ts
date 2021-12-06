@@ -51,6 +51,26 @@ export default {
         }
     },
     
+    auth: {
+        response: {
+            200: {
+                type: "object",
+                properties: {
+                    admin: {
+                        type: "object",
+                        properties: {
+                            id: { type: "string" },
+                            username: { type: "string" },
+                            role: { type: "number" },
+                        }
+                    }
+                }
+            },
+            '4xx': defaultError,
+            500: defaultError,
+        }
+    },
+
     update: {
         response: {
             200: defaultMessage,
