@@ -26,6 +26,10 @@ export class createProject1638554925302 implements MigrationInterface {
                     type: "varchar",
                 },
                 {
+                    name: "banner_url",
+                    type: "text",  
+                },
+                {
                     name: "html",
                     type: "text",
                 },
