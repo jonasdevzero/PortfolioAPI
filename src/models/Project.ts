@@ -7,7 +7,10 @@ export default class Project extends BaseEntity {
     id: string
 
     @Column()
-    name: string 
+    name: string
+
+    @Column()
+    banner_url: string
 
     @Column()
     description: string

@@ -1,4 +1,4 @@
-import { defaultError, defaultMessage } from "./defaultSchema";
+import { defaultError, defaultMessage } from "./defaultSchema"
 
 export default {
     index: {
@@ -13,6 +13,7 @@ export default {
                             properties: {
                                 id: { type: "string" },
                                 name: { type: "string" },
+                                banner_url: { type: "string" },
                                 description: { type: "string" },
                                 html: { type: "string" },
                                 repository_link: { type: "string" },
@@ -45,6 +46,7 @@ export default {
                         properties: {
                             id: { type: "string" },
                             name: { type: "string" },
+                            banner_url: { type: "string" },
                             description: { type: "string" },
                             html: { type: "string" },
                             repository_link: { type: "string" },

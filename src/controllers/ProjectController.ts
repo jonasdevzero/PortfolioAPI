@@ -1,5 +1,6 @@
 import { getRepository } from "typeorm"
 import * as yup from "yup"
+import { string } from "yup/lib/locale"
 import Project from "../models/Project"
 import ProjectImage from "../models/ProjectImage"
 import { ServerRequest, ServerReply } from "../types/controller"
@@ -48,6 +49,7 @@ export default {
 
             const schema = yup.object().shape({
                 name: yup.string().required(),
+                banner_url: yup.string().required(),
                 description: yup.string().required(),
                 html: yup.string().required(),
                 repository_link: yup.string().required(),
@@ -91,6 +93,7 @@ export default {
 
             const schema = yup.object().shape({
                 name: yup.string().required(),
+                banner_url: yup.string().required(),
                 description: yup.string().required(),
                 html: yup.string().required(),
                 repository_link: yup.string().required(),
