@@ -129,7 +129,7 @@ export default {
             if  (!project)
                 return reply.status(404).send({ message: "Project not found!" })
 
-            await projectRepository.delete(project)
+            await projectRepository.delete({ id: project_id })
 
             reply.status(200).send({ message: "Ok" })
         } catch (error) {

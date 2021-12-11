@@ -30,7 +30,8 @@ export class createProjectImage1638619749278 implements MigrationInterface {
                     name: "ProjectImage",
                     columnNames: ["project_id"],
                     referencedTableName: "project",
-                    referencedColumnNames: ["id"]
+                    referencedColumnNames: ["id"],
+                    onDelete: "CASCADE"
                 }
             ]
         }))

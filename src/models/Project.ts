@@ -30,7 +30,7 @@ export default class Project extends BaseEntity {
     @Column()
     created_at: Date
 
-    @OneToMany(_ => ProjectImage, projectImage => projectImage.project)
+    @OneToMany(_ => ProjectImage, projectImage => projectImage.project, { onDelete: "CASCADE" })
     @JoinColumn({ name: "project_id" })
     images: ProjectImage[]
 }
