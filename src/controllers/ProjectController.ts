@@ -1,6 +1,5 @@
 import { getRepository } from "typeorm"
 import * as yup from "yup"
-import { string } from "yup/lib/locale"
 import Project from "../models/Project"
 import ProjectImage from "../models/ProjectImage"
 import { ServerRequest, ServerReply } from "../types/controller"
@@ -45,7 +44,7 @@ export default {
 
     async create(req: ServerRequest, reply: ServerReply) {
         try {
-            const { name, description, html, repository_link, website_link, video_demo, images } = req.body
+            const { name, banner_url, description, html, repository_link, website_link, video_demo, images } = req.body
 
             const schema = yup.object().shape({
                 name: yup.string().required(),
@@ -57,7 +56,7 @@ export default {
                 video_demo: yup.string(),
                 images: yup.array().of(yup.object().shape({
                     url: yup.string()
-                })),
+                })).required(),
             })
 
             let validationError: any
@@ -69,7 +68,7 @@ export default {
             const projectRepository = getRepository(Project)
             const projectImageRepository = getRepository(ProjectImage)
 
-            const project = await projectRepository.create({ name, description, html, repository_link, website_link, video_demo }).save()
+            const project = await projectRepository.create({ name, banner_url, description, html, repository_link, website_link, video_demo }).save()
             await Promise.all(images.map(({ url }: { url: string }) => 
                 projectImageRepository.create({ url, project_id: project.id, project }).save()))
 
