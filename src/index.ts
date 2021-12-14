@@ -12,7 +12,7 @@ const secret = process.env.ADMIN_SECRET || "devzero"
 
 const server = fastify({ logger: process.env.ENVIRONMENT === "development" })
 
-server.register(fastifyCors, { origin: true, methods: ["GET, POST", "PUT", "DELETE", "PATCH"] })
+server.register(fastifyCors, { origin: "*", methods: ["GET, POST", "PUT", "DELETE", "PATCH", "OPTIONS"] })
 server.register(fastifyJWT, { secret })
 server.register(routes)
 
