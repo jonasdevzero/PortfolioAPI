@@ -11,6 +11,8 @@ export default function routes(fastify: FastifyInstance, _opts: FastifyPluginOpt
         done()
     })
 
+    fastify.get("/", (req, reply) => { reply.status(200).send("Ok") })
+
     fastify.register(projectRoutes, { prefix: "/project" })
     fastify.register(skillRoutes, { prefix: "/skill" })
     fastify.register(messageRoutes, { prefix: "/message" })
