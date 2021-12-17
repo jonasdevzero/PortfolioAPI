@@ -102,6 +102,9 @@ export default {
             const adminRepository = getRepository(Admin)
             const admin = await adminRepository.findOne(id)
 
+            if (!admin)
+                return reply.status(404).send({ message: "Admin not found!" })
+
             reply.status(200).send({ admin })
         } catch (error) {
             reply.status(500).send({ message: "Internal Server Error", error })
