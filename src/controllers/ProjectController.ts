@@ -72,7 +72,9 @@ export default {
             await Promise.all(images.map(({ url }: { url: string }) => 
                 projectImageRepository.create({ url, project_id: project.id, project }).save()))
 
-            reply.status(201).send({ message: "Ok" })
+            const p = await projectRepository.findOne(project, { relations: ["images"] }) 
+
+            reply.status(201).send({ project: p })
         } catch (error) {
             reply.status(500).send({ message: "Internal Server Error", error })
         }
@@ -113,7 +115,9 @@ export default {
                 ...new_images?.map(({ url }: { url: string }) => projectImageRepository.create({ url, project_id: project.id, project }).save())
             ])
 
-            reply.status(200).send({ message: "Ok" })
+            const p = await projectRepository.findOne(id, { relations: ["images"] })
+
+            reply.status(200).send({ project: p })
         } catch (error) {
             reply.status(500).send({ message: "Internal Server Error", error })
         }
