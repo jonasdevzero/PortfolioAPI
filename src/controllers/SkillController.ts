@@ -31,9 +31,9 @@ export default {
                 return reply.status(400).send({ message: validationError })
 
             const skillRepository = getRepository(Skill)
-            await skillRepository.create({ name, type, description, icon_url, more_link }).save()
+            const skill = await skillRepository.create({ name, type, description, icon_url, more_link }).save()
 
-            reply.status(201).send({ message: "Ok" })
+            reply.status(201).send({ skill })
         } catch (error) {
             reply.status(500).send({ message: "Internal Server Error", error })
         }
@@ -55,8 +55,9 @@ export default {
                 return reply.status(400).send({ message: validationError })
 
             await skillRepository.update(skill.id, { name, type, description, icon_url, more_link })
+            const s = await skillRepository.findOne(skill_id)
 
-            reply.status(200).send({ message: "Ok" })
+            reply.status(200).send({ skill: s })
         } catch (error) {
             reply.status(500).send({ message: "Internal Server Error", error })
         }
