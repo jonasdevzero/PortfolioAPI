@@ -13,7 +13,7 @@ export default {
 
             const messageRepository = getRepository(Message)
             const messages = await messageRepository.find({ 
-                order: { sent_at: "ASC" },
+                order: { sent_at: "DESC" },
                 take: limit,
                 skip
             })
